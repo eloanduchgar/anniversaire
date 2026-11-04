@@ -341,16 +341,10 @@ h1 em {
 }
 .copy-btn:hover { background: #123348; }
 
-.no-gift-note {
+.team-note {
   font-weight: 700;
   margin-top: 22px;
-  font-size: 1rem;
-}
-.no-gift-note span {
-  color: var(--red);
-  display: block;
-  font-size: 0.9rem;
-  margin-top: 4px;
+  font-size: 1.05rem;
 }
 
 .doodle {
@@ -382,7 +376,7 @@ h1 em {
 </head>
 <body>
 
-<!-- ÉCRAN D'OUVERTURE DE LA LETTRE (Enveloppe centrée et agrandie) -->
+<!-- ÉCRAN D'OUVERTURE DE LA LETTRE -->
 <div id="envelope-screen" onclick="openEnvelope()">
   <div class="envelope-wrapper">
     <div class="envelope">
@@ -401,7 +395,6 @@ h1 em {
     <div class="sparkle" style="top:40%; left:50%; animation-delay: 2.5s;"></div>
   </div>
 
-  <!-- Doodles animés autour -->
   <span class="doodle d1">✨</span>
   <span class="doodle d2">🎆</span>
   <span class="doodle d3">🎳</span>
@@ -410,7 +403,6 @@ h1 em {
   <span class="doodle d6">❄️</span>
 
   <section class="card">
-    <!-- Logo Copotins -->
     <div class="logo-container">
       <img src="copotins logo.jpg" alt="Logo Copotins" class="logo-img">
     </div>
@@ -425,49 +417,44 @@ h1 em {
       Rendez-vous le <strong>vendredi 28 novembre</strong> (début entre <strong>14h et 14h30</strong>) pour fêter mon anniversaire ensemble !
     </p>
 
-    <!-- Explication et excuses concernant le bal des lycéens -->
     <div class="alert">
-      <div class="alert-title">⚠️ Désolé pour la date (Bal des Lycéens)</div>
-      Je m'excuse vraiment que ça tombe le même jour que le bal des lycéens. J'ai voulu décaler la date mais je n'ai malheureusement pas pu. Je comprendrai totalement si vous préférez ne pas venir à cause du bal !
+      <div class="alert-title">⚠️ Désolé pour la date (Bal des Lycéens) 😢</div>
+      Je m'excuse vraiment que ça tombe le même jour que le bal des lycéens 😢. J'ai voulu décaler la date mais je n'ai malheureusement pas pu. Je comprendrai totalement si vous préférez ne pas venir à cause du bal !
     </div>
 
-    <!-- Carte Féeries de Noël de Narbonne avec image_e35c66 -->
     <div class="feeries-card">
-      <img src="image_e35c66.jpg" alt="Affiche Féeries de Noël Narbonne" class="feeries-img">
+      <img src="image_e35c66.png" alt="Affiche Féeries de Noël Narbonne" class="feeries-img">
       <div class="feeries-info">
         <h3>Féeries de Noël ❄️</h3>
-        <p><strong>Vendredi 28 Novembre</strong> — Lancement à Narbonne ![cite: 2]</p>
-        <p>• <strong>17h00 :</strong> Illuminations (Place de l'Hôtel-de-Ville)[cite: 2]</p>
-        <p>• <strong>18h30 :</strong> Feu d'artifice (Pont de la Liberté) 🎆[cite: 1, 2]</p>
+        <p><strong>Vendredi 28 Novembre</strong> — Lancement à Narbonne !</p>
+        <p>• <strong>17h00 :</strong> Illuminations (Place de l'Hôtel-de-Ville)</p>
+        <p>• <strong>18h30 :</strong> Feu d'artifice (Pont de la Liberté) 🎆</p>
         <span class="feeries-badge">Au cœur du programme !</span>
       </div>
     </div>
 
-    <!-- Programme avec l'horaire et les options -->
     <div class="details">
       <div class="item">
         <b>1. Partie de Bowling 🎳</b>
-        <span>Rendez-vous entre 14h et 14h30 pour commencer par une bonne partie de bowling tous ensemble ![cite: 1]</span>
+        <span>Rendez-vous entre 14h et 14h30 pour commencer par une bonne partie de bowling tous ensemble !</span>
       </div>
       <div class="item">
         <b>2. Le Goûter (Comme vous voulez) 🍰</b>
-        <span>Soit je récupère du goûter à la maison et on va le manger en ville, soit on s'achète un truc directement en ville ![cite: 1]</span>
+        <span>Soit je récupère du goûter à la maison et on va le manger en ville, soit on s'achète un truc directement en ville !</span>
       </div>
       <div class="item">
         <b>3. Noël & Feu d'artifice 🎆</b>
-        <span>On profite ensuite des illuminations et du grand feu d'artifice en ville ![cite: 1, 2]</span>
+        <span>On profite ensuite des illuminations et du grand feu d'artifice en ville !</span>
       </div>
     </div>
 
-    <div class="no-gift-note">
+    <div class="team-note">
       Venez comme vous êtes, les copotins ! 🤝
-      <span>🎁 Pas besoin de cadeau, votre présence me suffit largement ![cite: 1]</span>
     </div>
 
     <br>
     <button class="btn-rsvp" onclick="generateMessage()">🎉 Je serai là ! (Générer pour Insta)</button>
 
-    <!-- Zone de texte pour Instagram -->
     <div id="instaModal" class="modal-box">
       <p style="font-weight: 700; margin: 0 0 8px 0; font-size: 0.95rem;">📸 Copie ce texte et envoie-le moi sur Insta :</p>
       <textarea id="instaText" readonly></textarea>
