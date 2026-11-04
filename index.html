@@ -414,7 +414,7 @@ h1 em {
     <h1>Joyeux <em>Anniversaire</em> !</h1>
 
     <p class="intro">
-      Rendez-vous le <strong>vendredi 28 novembre</strong> (début entre <strong>14h et 14h30</strong>) pour fêter mon anniversaire ensemble !
+      C'est Eloan ! Rendez-vous le <strong>vendredi 28 novembre</strong> (début entre <strong>14h et 14h30</strong>) pour fêter mon anniversaire ensemble !
     </p>
 
     <div class="alert">
@@ -424,7 +424,7 @@ h1 em {
 
     <div class="feeries-card">
       <img src="image_e35c66.png" alt="Affiche Féeries de Noël Narbonne" class="feeries-img">
-      <div class="feeries-info">
+      <div class="is-info feeries-info">
         <h3>Féeries de Noël ❄️</h3>
         <p><strong>Vendredi 28 Novembre</strong> — Lancement à Narbonne !</p>
         <p>• <strong>17h00 :</strong> Illuminations (Place de l'Hôtel-de-Ville)</p>
@@ -456,7 +456,7 @@ h1 em {
     <button class="btn-rsvp" onclick="generateMessage()">🎉 Je serai là ! (Générer pour Insta)</button>
 
     <div id="instaModal" class="modal-box">
-      <p style="font-weight: 700; margin: 0 0 8px 0; font-size: 0.95rem;">📸 Copie ce texte et envoie-le moi sur Insta :</p>
+      <p style="font-weight: 700; margin: 0 0 8px 0; font-size: 0.95rem;">📸 Copie ce texte rigolo et envoie-le à Eloan sur Insta :</p>
       <textarea id="instaText" readonly></textarea>
       <button class="copy-btn" onclick="copyToClipboard()">📋 Copier le message</button>
       <span id="copyFeedback" style="font-size: 0.85rem; color: #2b8a3e; font-weight: 700; margin-left: 10px;"></span>
@@ -482,7 +482,7 @@ function generateMessage() {
   let nom = prompt("Entre ton prénom ou pseudo :");
   if (!nom || nom.trim() === "") return;
   
-  let message = `Salut ! C'est ${nom.trim()} 😎 Je serai là pour ton anniversaire le 28 novembre entre 14h et 14h30 avec les copotins (bowling + goûter + feu d'artifice) ! 🎉`;
+  let message = `Eloan ! C'est ${nom.trim()} 😎 J'ai vu ton plan de ministre pour le 28 novembre. Entre le bowling, le goûter et le feu d'artifice, compte sur moi pour venir semer le chaos entre 14h et 14h30 ! Prépare les strikes 🎳🔥`;
   
   document.getElementById("instaText").value = message;
   document.getElementById("instaModal").style.display = "block";
