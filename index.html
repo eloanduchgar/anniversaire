@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les Copotins — Invitation Anniversaire & Féeries de Noël</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700;800&family=Space+Grotesk:wght@600;700&display=swap');
+
+:root {
+  --bg: #c7d2d0;
+  --red: #e95042;
+  --ink: #171717;
+  --cream: #fffaf0;
+  --orange: #f47b50;
+  --blue-festive: #1b4965;
+  --gold: #f4a261;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+/* --- ÉCRAN DE L'ENVELOPPE / LETTRE QUI S' OUVRE --- */
+#envelope-screen {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: var(--blue-festive);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.envelope-wrapper {
+  text-align: center;
+  cursor: pointer;
+  animation: bounceEnvelope 2s infinite ease-in-out;
+}
+
+.envelope {
+  width: 220px;
+  height: 150px;
+  background: var(--cream);
+  border: 4px solid var(--ink);
+  border-radius: 12px;
+  position: relative;
+  box-shadow: 8px 8px 0 var(--ink);
+  display: grid;
+  place-items: center;
+}
+
+.envelope:before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  border-left: 108px solid transparent;
+  border-right: 108px solid transparent;
+  border-top: 85px solid var(--orange);
+  transform-origin: top;
+  transition: transform 0.6s ease;
+}
+
+.envelope-seal {
+  position: absolute;
+  background: var(--red);
+  color: white;
+  font-weight: 800;
+  padding: 6px 12px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  z-index: 2;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.open-instruction {
+  color: white;
+  font: 700 1.2rem 'Space Grotesk', sans-serif;
+  margin-top: 25px;
+  text-shadow: 2px 2px 0 var(--ink);
+  letter-spacing: 0.05em;
+}
+
+@keyframes bounceEnvelope {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* --- CONTENU PRINCIPAL --- */
+main {
+  min-height: 100vh;
+  padding: 40px 16px 60px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+main.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Particules de fond animées */
+.bg-sparkles {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.sparkle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--orange);
+  animation: floatSparkle 4s infinite ease-in-out;
+}
+@keyframes floatSparkle {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.3; }
+  50% { transform: translateY(-30px) scale(2); opacity: 0.9; }
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  width: min(760px, 100%);
+  background: var(--cream);
+  border: 3.5px solid var(--ink);
+  border-radius: 32px;
+  padding: clamp(24px, 5vw, 48px);
+  box-shadow: 12px 12px 0 var(--ink);
+  text-align: center;
+}
+
+.logo-container {
+  margin: 0 auto 16px;
+  display: inline-block;
+  animation: logoFloat 4s ease-in-out infinite;
+}
+.logo-img {
+  max-width: 260px;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  mix-blend-mode: multiply;
+}
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(-1.5deg); }
+}
+
+.kicker {
+  display: inline-block;
+  background: var(--orange);
+  color: #fff;
+  border: 2.5px solid var(--ink);
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-weight: 800;
+  transform: rotate(-2deg);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+h1 {
+  font: 800 clamp(2.4rem, 7vw, 4.2rem)/0.95 'Space Grotesk', sans-serif;
+  letter-spacing: -.05em;
+  margin: 20px 0 14px;
+}
+h1 em {
+  font-style: normal;
+  color: var(--red);
+  text-shadow: 2.5px 2.5px 0 var(--ink);
+}
+
+.intro {
+  font-size: 1.08rem;
+  line-height: 1.65;
+  max-width: 580px;
+  margin: 0 auto 22px;
+}
+
+.alert {
+  background: #fde8e5;
+  border: 2.5px dashed var(--red);
+  border-radius: 18px;
+  padding: 16px;
+  margin: 22px auto;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: left;
+  max-width: 580px;
+}
+.alert-title {
+  font-weight: 800;
+  color: var(--red);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.feeries-card {
+  background: var(--blue-festive);
+  color: #fff;
+  border: 3px solid var(--ink);
+  border-radius: 24px;
+  padding: 20px;
+  margin: 28px 0;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 20px;
+  text-align: left;
+  align-items: center;
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.feeries-img {
+  width: 100%;
+  border-radius: 14px;
+  border: 2px solid #fff;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+  object-fit: cover;
+}
+.feeries-info h3 {
+  font: 700 1.5rem 'Space Grotesk', sans-serif;
+  margin: 0 0 6px;
+  color: var(--gold);
+  text-shadow: 1px 1px 0 var(--ink);
+}
+.feeries-info p {
+  font-size: 0.9rem;
+  margin: 4px 0;
+  line-height: 1.4;
+  opacity: 0.95;
+}
+.feeries-badge {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--ink);
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  margin-top: 8px;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 24px 0;
+}
+.item {
+  border: 2.5px solid var(--ink);
+  border-radius: 18px;
+  padding: 16px 12px;
+  background: #dce9e6;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.item:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.item:nth-child(1) { background: #f5e8a8; }
+.item:nth-child(2) { background: #ffd7c6; }
+.item:nth-child(3) { background: #dce9e6; }
+.item b {
+  display: block;
+  font: 700 1.05rem 'Space Grotesk';
+  margin-bottom: 8px;
+}
+.item span { font-size: 0.88rem; line-height: 1.4; display: block; }
+
+.btn-rsvp {
+  background: var(--red);
+  color: white;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  padding: 16px 32px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  box-shadow: 5px 5px 0 var(--ink);
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  margin-top: 10px;
+}
+.btn-rsvp:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.modal-box {
+  display: none;
+  background: #fff;
+  border: 3px solid var(--ink);
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 5px 5px 0 var(--ink);
+  text-align: left;
+}
+.modal-box textarea {
+  width: 100%;
+  height: 90px;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  padding: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  resize: none;
+  background: #f4f4f4;
+}
+.copy-btn {
+  background: var(--blue-festive);
+  color: white;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.copy-btn:hover { background: #123348; }
+
+.no-gift-note {
+  font-weight: 700;
+  margin-top: 22px;
+  font-size: 1rem;
+}
+.no-gift-note span {
+  color: var(--red);
+  display: block;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+/* Doodles animés supplémentaires */
+.doodle {
+  position: absolute;
+  font-size: 2.2rem;
+  z-index: 0;
+  animation: doodleFloat 5s ease-in-out infinite;
+  user-select: none;
+}
+.d1 { top: 4%; left: 3%; animation-delay: 0s; }
+.d2 { top: 12%; right: 4%; animation-delay: 1s; }
+.d3 { bottom: 8%; left: 4%; animation-delay: 2s; }
+.d4 { bottom: 12%; right: 3%; animation-delay: 1.5s; }
+.d5 { top: 45%; left: 1%; animation-delay: 0.5s; }
+.d6 { top: 50% ; right: 1%; animation-delay: 2.5s; }
+
+@keyframes doodleFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-18px) rotate(20deg); }
+}
+
+@media(max-width: 640px) {
+  .details { grid-template-columns: 1fr; }
+  .feeries-card { grid-template-columns: 1fr; text-align: center; }
+  .feeries-img { max-width: 200px; margin: 0 auto; }
+  .card { padding: 22px 16px; box-shadow: 6px 6px 0 var(--ink); }
+}
+</style>
+</head>
+<body>
+
+<!-- ÉCRAN D'OUVERTURE DE LA LETTRE -->
+<div id="envelope-screen" onclick="openEnvelope()">
+  <div class="envelope-wrapper">
+    <div class="envelope">
+      <div class="envelope-seal">COPOTINS</div>
+    </div>
+    <div class="open-instruction">💌 Clique pour ouvrir ton invitation !</div>
+  </div>
+</div>
+
+<main id="main-content">
+  <div class="bg-sparkles">
+    <div class="sparkle" style="top:10%; left:15%; animation-delay: 0s;"></div>
+    <div class="sparkle" style="top:25%; left:85%; animation-delay: 1s;"></div>
+    <div class="sparkle" style="top:60%; left:10%; animation-delay: 2s;"></div>
+    <div class="sparkle" style="top:80%; left:80%; animation-delay: 1.5s;"></div>
+    <div class="sparkle" style="top:40%; left:50%; animation-delay: 2.5s;"></div>
+  </div>
+
+  <!-- Doodles animés autour -->
+  <span class="doodle d1">✨</span>
+  <span class="doodle d2">🎆</span>
+  <span class="doodle d3">🎳</span>
+  <span class="doodle d4">🍊</span>
+  <span class="doodle d5">🍰</span>
+  <span class="doodle d6">❄️</span>
+
+  <section class="card">
+    <!-- Logo Copotins -->
+    <div class="logo-container">
+      <img src="copotins logo.jpg" alt="Logo Copotins" class="logo-img">
+    </div>
+
+    <div>
+      <span class="kicker">ÉVÉNEMENT SPÉCIAL COPOTINS</span>
+    </div>
+
+    <h1>Joyeux <em>Anniversaire</em> !</h1>
+
+    <p class="intro">
+      Rendez-vous le <strong>vendredi 28 novembre</strong> (début entre <strong>14h et 14h30</strong>) pour fêter mon anniversaire ensemble !
+    </p>
+
+    <!-- Explication et excuses concernant le bal des lycéens -->
+    <div class="alert">
+      <div class="alert-title">⚠️ Désolé pour la date (Bal des Lycéens)</div>
+      Je m'excuse vraiment que ça tombe le même jour que le bal des lycéens. J'ai voulu décaler la date mais je n'ai malheureusement pas pu. Je comprendrai totalement si vous préférez ne pas venir à cause du bal !
+    </div>
+
+    <!-- Carte Féeries de Noël de Narbonne -->
+    <div class="feeries-card">
+      <img src="image_e35c66.jpg" alt="Affiche Féeries de Noël Narbonne" class="feeries-img">
+      <div class="feeries-info">
+        <h3>Féeries de Noël ❄️</h3>
+        <p><strong>Vendredi 28 Novembre</strong> — Lancement à Narbonne !</p>
+        <p>• <strong>17h00 :</strong> Illuminations (Place de l'Hôtel-de-Ville)</p>
+        <p>• <strong>18h30 :</strong> Feu d'artifice (Pont de la Liberté) 🎆</p>
+        <span class="feeries-badge">Au cœur du programme !</span>
+      </div>
+    </div>
+
+    <!-- Programme avec l'horaire et les options -->
+    <div class="details">
+      <div class="item">
+        <b>1. Partie de Bowling 🎳</b>
+        <span>Rendez-vous entre 14h et 14h30 pour commencer par une bonne partie de bowling tous ensemble !</span>
+      </div>
+      <div class="item">
+        <b>2. Le Goûter (Comme vous voulez) 🍰</b>
+        <span>Soit je récupère du goûter à la maison et on va le manger en ville, soit on s'achète un truc directement en ville !</span>
+      </div>
+      <div class="item">
+        <b>3. Noël & Feu d'artifice 🎆</b>
+        <span>On profite ensuite des illuminations et du grand feu d'artifice en ville !</span>
+      </div>
+    </div>
+
+    <div class="no-gift-note">
+      Venez comme vous êtes, les copotins ! 🤝
+      <span>🎁 Pas besoin de cadeau, votre présence me suffit largement !</span>
+    </div>
+
+    <br>
+    <button class="btn-rsvp" onclick="generateMessage()">🎉 Je serai là ! (Générer pour Insta)</button>
+
+    <!-- Zone de texte pour Instagram -->
+    <div id="instaModal" class="modal-box">
+      <p style="font-weight: 700; margin: 0 0 8px 0; font-size: 0.95rem;">📸 Copie ce texte et envoie-le moi sur Insta :</p>
+      <textarea id="instaText" readonly></textarea>
+      <button class="copy-btn" onclick="copyToClipboard()">📋 Copier le message</button>
+      <span id="copyFeedback" style="font-size: 0.85rem; color: #2b8a3e; font-weight: 700; margin-left: 10px;"></span>
+    </div>
+  </section>
+</main>
+
+<script>
+function openEnvelope() {
+  const screen = document.getElementById("envelope-screen");
+  const main = document.getElementById("main-content");
+  
+  screen.style.opacity = "0";
+  screen.style.visibility = "hidden";
+  
+  setTimeout(() => {
+    screen.remove();
+    main.classList.add("visible");
+  }, 400);
+}
+
+function generateMessage() {
+  let nom = prompt("Entre ton prénom ou pseudo :");
+  if (!nom || nom.trim() === "") return;
+  
+  let message = `Salut ! C'est ${nom.trim()} 😎 Je serai là pour ton anniversaire le 28 novembre entre 14h et 14h30 avec les copotins (bowling + goûter + feu d'artifice) ! 🎉`;
+  
+  document.getElementById("instaText").value = message;
+  document.getElementById("instaModal").style.display = "block";
+  document.getElementById("copyFeedback").innerText = "";
+}
+
+function copyToClipboard() {
+  let textArea = document.getElementById("instaText");
+  textArea.select();
+  document.execCommand("copy");
+  document.getElementById("copyFeedback").innerText = "Copié dans le presse-papier ! 👍";
+}
+</script>
+
+</body>
+</html>
